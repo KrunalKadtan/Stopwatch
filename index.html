@@ -8,8 +8,17 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="watch">
-        <div id="time">10 : 10 : 10</div>
+    <div id="inp-container">
+        <!-- <input type="date" id="inp-date"> -->
+        <input type="time" id="inp-time">
+    </div>
+
+    <button id="btn" onclick="calculateTime()">Submit</button>
+
+    <div id="container">
+        <div id="watch">
+            <div id="time"></div>
+        </div>
     </div>
 
     <script src="script.js"></script>

@@ -1,19 +1,21 @@
 
-const timeDisplay = document.querySelector('#time')
+function calculateTime() {
+    const timeDisplay = document.querySelector('#time')
+    const inputTime = document.querySelector('#inp-time').value;
 
+    let inpHours = parseInt(inputTime.split(':')[0]);
+    let inpMinutes = parseInt(inputTime.split(':')[1]);
 
-let updateTime = setInterval(function() {
-    let time = new Date();
+    let updateTime = setInterval(function() {
 
-    let hours = Math.floor(time.getHours());
-    (hours < 10) ? (hours = "0" + hours) : (hours = hours);
+        let now = new Date();
 
-    let minutes = Math.floor(time.getMinutes());
-    (minutes < 10) ? (minutes = "0" + minutes) : (minutes = minutes);
+        // let days = now.getDate() - 1;
+        let hours = now.getHours() - inpHours;
+        let minutes = now.getMinutes() - inpMinutes;
+        let seconds = now.getSeconds() - 0;
 
-    let seconds = Math.floor(time.getSeconds());
-    (seconds < 10) ? (seconds = "0" + seconds) : (seconds = seconds);
-
-    timeDisplay.textContent = hours + " : " + minutes + " : " + seconds;
-})
-
+        // timeDisplay.textContent = `${hours} : ${minutes} : ${seconds}`;
+        timeDisplay.textContent = `${inpHours} : ${inpMinutes}`
+    })
+}
