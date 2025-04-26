@@ -8,19 +8,43 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="inp-container">
+    <!-- <div id="inp-container">
         <input type="date" id="inp-date">
         <input type="time" id="inp-time">
+    </div> -->
+
+    <div id="startNewClock">+</div>
+
+    <div id="input-container">
+        <div id="digital-time-container">
+            <div class="time-box" id="hour-box">11</div>
+            <div id="time-separator">
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <div class="time-box" id="minute-box">11</div>
+        </div>
+
+        <div id="clock-container">
+            <div class="clock" id="clock">
+                <div class="hand" id="hourHand"></div>
+            </div>
+        </div>
+
+        <div id="btn-container">
+            <div class="btn">Cancel</div>
+            <div class="btn">OK</div>
+        </div>
     </div>
 
-    <button id="btn" onclick="calculateTime()">Submit</button>
+    <!-- <button id="btn" onclick="calculateTime()">Submit</button> -->
 
-    <div id="container">
+    <!-- <div id="container">
         <div id="watch">
             <div id="days"></div>
             <div id="time"></div>
         </div>
-    </div>
+    </div> -->
 
     <script src="script.js"></script>
 </body>

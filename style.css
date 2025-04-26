@@ -5,26 +5,31 @@
     box-sizing: border-box;
 }
 
-#inp-container {
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+/* #inp-container {
     display: flex;
     justify-content: space-around;
     align-items: center;
     margin: 20px;
-}
+} */
 
-#btn {
+/* #btn {
     display: block;
     margin-inline: auto;
     padding: 1% 4%;
-}
+} */
 
-#container {
+/* #container {
     display: flex;
     justify-content: center;
     margin: 12% auto;
-}
+} */
 
-#watch {
+/* #watch {
     width: 300px;
     height: 300px;
     border: 10px solid black;
@@ -46,4 +51,138 @@
 
 #time {
     margin-bottom: 15%;
+} */
+
+#startNewClock {
+    width: 10vw;
+    height: 10vw;
+
+    margin: 5% auto;
+
+    font-size: 8vw;
+    font-weight: bold;
+
+    border: 3px solid black;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#input-container {
+    width: 25vw;
+    height: 40vw;
+
+    margin: 0 auto;
+
+    border: 2px solid black;
+    border-radius: 12px;
+}
+
+#digital-time-container {
+    width: 75%;
+    height: 20%;
+
+    margin: 8% auto;
+
+    border: 2px solid black;
+    border-radius: 15px;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.time-box {
+    width: 40%;
+    height: 90%;
+
+    border: 2px solid black;
+    border-radius: 12px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 5vw;
+}
+
+#time-separator {
+    width: 10%;
+    height: 90%;
+
+    border: 2px solid black;
+    border-radius: 12px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.dot {
+    width: 45%;
+    height: 10%;
+
+    background: black;
+
+    border: 2px solid black;
+    border-radius: 50%;
+}
+
+#clock-container {
+    width: 90%;
+    height: 55%;
+
+    margin: auto;
+
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.clock {
+    width: 90%;
+    height: 90%;
+
+    margin: 5% auto;
+
+    border: 2px solid black;
+    border-radius: 50%;
+}
+
+.hand {
+    width: 1%;
+    height: 35%;
+
+    margin: 15% auto;
+
+    border: 2px solid black;
+    border-radius: 20px;
+
+    transform-origin: bottom center;
+    transform: rotate(0deg);
+    
+    transition: transform 0.3s ease-in-out;
+}
+
+#btn-container {
+    width: 90%;
+    height: 10%;
+
+    margin: 5%auto;
+
+    border: 2px solid black;
+    border-radius: 12px;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.btn {
+    padding-inline: 5%;
+
+    border: 2px solid black;
+    border-radius: 12px;
 }
