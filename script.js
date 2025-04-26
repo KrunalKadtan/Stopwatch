@@ -6,6 +6,7 @@ const minuteInput = document.querySelector('#minute-box')
 
 let selectedHour = null
 let selectedMinute = null
+let ampm = 'AM'
 let mode = 'hours'
 
 function clearClock() {
@@ -35,10 +36,11 @@ function createNumbers(mode) {
 
     const centerX = clock.offsetWidth / 2 * 0.99
     const centerY = clock.offsetHeight / 2 * 0.99
-    const radius = clockRadius * 0.8
+    let radius = clockRadius * 0.8
 
     if (mode === 'hours') {
-        for (let i = 1; i <= 12; i++) {
+        for (let i = 0; i < 24; i++) {
+            radius = (i > 11) ? (clockRadius * 0.8 * 0.6) : (clockRadius * 0.8)
             const deg = i * 30
             const rad = deg * (Math.PI / 180)
             const x = centerX + radius * Math.sin(rad)
@@ -94,12 +96,12 @@ function createNumbers(mode) {
 function calculateTime() {
     const timeDisplay = document.querySelector('#time')
     const daysDisplay = document.querySelector('#days')
-    const inputTime = document.querySelector('#inp-time').value;
-    const inputDate = document.querySelector('#inp-date').value;
 
-    console.log(inputTime, inputDate)
+    const hours = String(selectedHour).padStart(2, '0')
+    const minutes = String(selectedMinute).padStart(2, '0')
 
-    const [ hours, minutes ] = inputTime.split(':')
+    
+
     const [ year, month, day ] = inputDate.split('-')
     const dateTime = new Date(year, month-1, day, hours, minutes)
 

@@ -10,49 +10,6 @@ body {
     text-align: center;
 }
 
-/* #inp-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 20px;
-} */
-
-/* #btn {
-    display: block;
-    margin-inline: auto;
-    padding: 1% 4%;
-} */
-
-/* #container {
-    display: flex;
-    justify-content: center;
-    margin: 12% auto;
-} */
-
-/* #watch {
-    width: 300px;
-    height: 300px;
-    border: 10px solid black;
-    border-radius: 50%;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-#days, #time {
-    font-size: 30px;
-}
-
-#days {
-    margin-bottom: 15%;
-}
-
-#time {
-    margin-bottom: 15%;
-} */
-
 #startNewClock {
     width: 10vw;
     height: 10vw;
@@ -62,17 +19,22 @@ body {
     font-size: 8vw;
     font-weight: bold;
 
-    border: 3px solid black;
-    border-radius: 50%;
+    border: 2px solid black;
+    border-radius: 30%;
 
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+#startNewClock:hover {
+    cursor: pointer;
+    background: #bbb;
+}
+
 #input-container {
-    width: 25vw;
-    height: 40vw;
+    width: 30vw;
+    height: 50vw;
 
     margin: 0 auto;
 
@@ -81,12 +43,12 @@ body {
 }
 
 #digital-time-container {
-    width: 75%;
+    width: 80%;
     height: 20%;
 
     margin: 8% auto;
 
-    border: 2px solid black;
+    border: 2px solid transparent;
     border-radius: 15px;
 
     display: flex;
@@ -109,10 +71,10 @@ body {
 }
 
 #time-separator {
-    width: 10%;
+    width: 7%;
     height: 90%;
 
-    border: 2px solid black;
+    /* border: 2px solid black; */
     border-radius: 12px;
 
     display: flex;
@@ -132,8 +94,8 @@ body {
 }
 
 #clock-container {
-    width: 90%;
-    height: 55%;
+    width: 95%;
+    height: 57%;
 
     margin: auto;
 
@@ -156,10 +118,10 @@ body {
 .number {
     position: absolute;
 
-    width: 17.5%;
-    height: 17.5%;
+    width: 15%;
+    height: 15%;
 
-    font-size: 2vw;
+    font-size: 1.8vw;
 
     display: flex;
     justify-content: center;
@@ -180,11 +142,11 @@ body {
 
 .hand {
     width: 2%;
-    height: 30%;
+    height: 18%;
 
     background: black;
 
-    margin: 20% auto;
+    margin: 32% auto;
 
     border: 2px solid black;
     border-radius: 20px;
@@ -201,7 +163,7 @@ body {
 
     margin: 5% auto;
 
-    border: 2px solid black;
+    /* border: 2px solid black; */
     border-radius: 12px;
 
     display: flex;
@@ -211,10 +173,46 @@ body {
 
 .btn {
     margin: 1% auto;
+    padding: 3%;
     padding-inline: 5%;
 
     font-size: 2.1vw;
 
-    border: 2px solid black;
+    /* border: 2px solid black; */
     border-radius: 12px;
 }
+
+.btn:hover {
+    cursor: pointer;
+    background: #bbb;
+}
+
+/* #container {
+    display: flex;
+    justify-content: center;
+    margin: 12% auto;
+}
+
+#watch {
+    width: 300px;
+    height: 300px;
+    border: 10px solid black;
+    border-radius: 50%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#days, #time {
+    font-size: 30px;
+}
+
+#days {
+    margin-bottom: 15%;
+}
+
+#time {
+    margin-bottom: 15%;
+} */
