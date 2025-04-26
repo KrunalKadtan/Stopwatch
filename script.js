@@ -1,4 +1,96 @@
 
+const clock = document.querySelector('#clock')
+const hand = document.querySelector('.hand')
+const hourInput = document.querySelector('#hour-box')
+const minuteInput = document.querySelector('#minute-box')
+
+let selectedHour = null
+let selectedMinute = null
+let mode = 'hours'
+
+function clearClock() {
+    document.querySelectorAll('.number').forEach(el => el.remove())
+}
+
+function rotateHand(degree) {
+    hand.style.transform = `rotate(${degree}deg)`
+}
+
+function updateTime(hand, time) {
+    if (time !== null) {
+        const tt = String(time).padStart(2, '0')
+
+        if (hand === 'hours') {
+            hourInput.textContent = `${time}`
+        } else if (hand === 'minutes') {
+            minuteInput.textContent = `${time}`
+        }
+    }
+}
+
+function createNumbers(mode) {
+    clearClock()
+
+    const clockRadius = clock.offsetWidth / 2
+
+    const centerX = clock.offsetWidth / 2 * 0.99
+    const centerY = clock.offsetHeight / 2 * 0.99
+    const radius = clockRadius * 0.8
+
+    if (mode === 'hours') {
+        for (let i = 1; i <= 12; i++) {
+            const deg = i * 30
+            const rad = deg * (Math.PI / 180)
+            const x = centerX + radius * Math.sin(rad)
+            const y = centerY - radius * Math.cos(rad)
+
+            console.log(x, y)
+
+            const num = document.createElement('div')
+            num.className = 'number'
+            num.innerText = i
+            num.style.left = `${x}px`
+            num.style.top = `${y}px`
+
+            num.onclick = () => {
+                selectedHour = i
+                rotateHand(deg)
+                setTimeout(() => {
+                    updateTime(mode, selectedHour)
+                    mode = 'minutes'
+                    createNumbers(mode)
+                }, 400)
+            }
+
+            clock.appendChild(num)
+        }
+    } else if (mode === 'minutes') {
+        for (let i = 0; i < 60; i += 5) {
+            const deg = i * 6
+            const rad = deg * (Math.PI / 180)
+            const x = centerX + radius * Math.sin(rad)
+            const y = centerY - radius * Math.cos(rad)
+
+            const num = document.createElement('div')
+            num.className = 'number'
+            num.innerText = i
+            num.style.left = `${x}px`
+            num.style.top = `${y}px`
+
+            num.onclick = () => {
+                selectedMinute = i
+                rotateHand(deg)
+                setTimeout(() => {
+                    updateTime(mode, selectedMinute)
+                    // clearClock()
+                }, 400)
+            }
+
+            clock.appendChild(num)
+        }
+    }
+}
+
 function calculateTime() {
     const timeDisplay = document.querySelector('#time')
     const daysDisplay = document.querySelector('#days')
@@ -35,3 +127,5 @@ function calculateTime() {
         timeDisplay.textContent = `${hours} : ${minutes} : ${seconds} : ${mseconds}`;
     })
 }
+
+createNumbers(mode)

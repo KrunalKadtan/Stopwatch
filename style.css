@@ -142,6 +142,8 @@ body {
 }
 
 .clock {
+    position: relative;
+
     width: 90%;
     height: 90%;
 
@@ -151,11 +153,38 @@ body {
     border-radius: 50%;
 }
 
-.hand {
-    width: 1%;
-    height: 35%;
+.number {
+    position: absolute;
 
-    margin: 15% auto;
+    width: 17.5%;
+    height: 17.5%;
+
+    font-size: 2vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    /* border: 2px solid  black; */
+    border-radius: 50%;
+
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+  transition: background 0.2s;
+}
+
+.number:hover {
+    background: #bbb;
+}
+
+.hand {
+    width: 2%;
+    height: 30%;
+
+    background: black;
+
+    margin: 20% auto;
 
     border: 2px solid black;
     border-radius: 20px;
@@ -170,7 +199,7 @@ body {
     width: 90%;
     height: 10%;
 
-    margin: 5%auto;
+    margin: 5% auto;
 
     border: 2px solid black;
     border-radius: 12px;
@@ -181,7 +210,10 @@ body {
 }
 
 .btn {
+    margin: 1% auto;
     padding-inline: 5%;
+
+    font-size: 2.1vw;
 
     border: 2px solid black;
     border-radius: 12px;
