@@ -32,11 +32,49 @@ body {
     background: #bbb;
 }
 
-#input-container {
+#input-field {
+    width: max-content;
+
+    margin: 0 auto;
+    border: 2px solid black;
+    border-radius: 18px;
+
+    display: flex;
+    flex-direction: row;
+}
+
+#input-date-container {
+    width: 50vw;
+    height: 50vw;
+
+    margin: 3% auto;
+
+    border: 2px solid black;
+    border-radius: 12px;
+}
+
+#calendarHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 4% 5%;
+
+    font-size: 3vw;
+}
+
+#prevMonth, #nextMonth {
+    border: none;
+    background: none;
+
+    font-size: 3vw;
+}
+
+#input-time-container {
     width: 30vw;
     height: 50vw;
 
-    margin: 0 auto;
+    margin: 3% auto;
 
     border: 2px solid black;
     border-radius: 12px;

@@ -11,25 +11,45 @@
 
     <div id="startNewClock">+</div>
 
-    <div id="input-container">
-        <div id="digital-time-container">
-            <div class="time-box" id="hour-box">00</div>
-            <div id="time-separator">
-                <div class="dot"></div>
-                <div class="dot"></div>
+    <div id="input-field">
+
+        <div id="input-date-container">
+            <div id="calendarHeader">
+                <button id="prevMonth">◀</button>
+
+                <div class="custom-dropdown">
+                    <div class="selected-option" id="selectedMonth">Select Month</div>
+                    <ul class="options-list" id="monthOptions"></ul>
+                </div>
+                <div class="custom-dropdown">
+                    <div class="selected-option" id="selectedYear">Select Year</div>
+                    <ul class="options-list" id="yearOptions"></ul>
+                </div>
+
+                <button id="nextMonth">▶</button>
             </div>
-            <div class="time-box" id="minute-box">00</div>
         </div>
 
-        <div id="clock-container">
-            <div class="clock" id="clock">
-                <div class="hand" id="hourHand"></div>
+        <div id="input-time-container">
+            <div id="digital-time-container">
+                <div class="time-box" id="hour-box">00</div>
+                <div id="time-separator">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <div class="time-box" id="minute-box">00</div>
             </div>
-        </div>
 
-        <div id="btn-container">
-            <div class="btn">Cancel</div>
-            <div class="btn">OK</div>
+            <div id="clock-container">
+                <div class="clock" id="clock">
+                    <div class="hand" id="hourHand"></div>
+                </div>
+            </div>
+
+            <div id="btn-container">
+                <div class="btn">Cancel</div>
+                <div class="btn">OK</div>
+            </div>
         </div>
     </div>
 
