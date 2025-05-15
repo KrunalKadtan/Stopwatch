@@ -49,7 +49,7 @@ body {
 
     margin: 3% auto;
 
-    border: 2px solid black;
+    /* border: 2px solid black; */
     border-radius: 12px;
 }
 
@@ -87,7 +87,8 @@ body {
     transition: all 0.3s ease;
     pointer-events: none;
     position: absolute;
-    /* background-color: #2a2a2a; */
+    background-color: #2a2a2a;
+    color: whitesmoke;
     z-index: 20;
     list-style: none;
     border: 1px solid #555;
@@ -152,8 +153,46 @@ body {
     grid-template-columns: repeat(7, 1fr);
     text-align: center;
     font-weight: bold;
-    font-size: 2.5vw;
-    margin: 1.1vw;
+    font-size: 2.6vw;
+    margin: 8% 1%;
+}
+
+#daysGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    margin: 5% 1%;
+    font-size: 2.8vw;
+}
+
+#daysGrid span {
+    width: 5vw;
+    height: 4vw;
+    margin: 10%;
+    border-radius: 1.5vw;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#daysGrid span:hover {
+    background-color: #b7b4b4;
+}
+
+#daysGrid span:active {
+    transform: scale(0.85);
+}
+
+.selected {
+    background-color: #4285f4;
+    color: white;
+}
+
+.today {
+    background-color: #00bcd4;
+    color: white;
 }
 
 #input-time-container {
@@ -162,7 +201,7 @@ body {
 
     margin: 3% auto;
 
-    border: 2px solid black;
+    /* border: 2px solid black; */
     border-radius: 12px;
 }
 
@@ -223,7 +262,7 @@ body {
 
     margin: auto;
 
-    border: 2px solid black;
+    /* border: 2px solid black; */
     border-radius: 10px;
 }
 
@@ -311,7 +350,7 @@ body {
     background: #bbb;
 }
 
-/* #container {
+#container {
     display: flex;
     justify-content: center;
     margin: 12% auto;
@@ -339,4 +378,4 @@ body {
 
 #time {
     margin-bottom: 15%;
-} */
+}

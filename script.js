@@ -4,6 +4,15 @@ const hand = document.querySelector('.hand')
 const hourInput = document.querySelector('#hour-box')
 const minuteInput = document.querySelector('#minute-box')
 
+const calendar = document.getElementById('input-date-container');;
+const selectedMonth = document.getElementById('selectedMonth');
+const monthOptions = document.getElementById('monthOptions');
+const selectedYear = document.getElementById('selectedYear');
+const yearOptions = document.getElementById('yearOptions');
+
+let currentDate = new Date()
+let selectedDate = null
+
 let selectedHour = null
 let selectedMinute = null
 let ampm = 'AM'
@@ -102,8 +111,11 @@ function calculateTime() {
 
     
 
-    const [ year, month, day ] = inputDate.split('-')
+    // const [ year, month, day ] = inputDate.split('-')
+    const [ day, month, year ] = formatDate(selectedDate).split('-')
     const dateTime = new Date(year, month-1, day, hours, minutes)
+
+    console.log(dateTime)
 
     let updateTime = setInterval(function() {
 
@@ -134,14 +146,7 @@ createNumbers(mode)
 
 
 
-const calendar = document.getElementById('input-date-container');;
-const selectedMonth = document.getElementById('selectedMonth');
-const monthOptions = document.getElementById('monthOptions');
-const selectedYear = document.getElementById('selectedYear');
-const yearOptions = document.getElementById('yearOptions');
 
-let currentDate = new Date()
-let selectedDate = null
 
 
 
@@ -231,3 +236,50 @@ days.forEach((dayName) => {
     span.textContent = dayName;
     dayNames.appendChild(span);
 })
+
+const daysGrid = document.querySelector('#daysGrid');
+
+function generateCalendar(date) {
+  daysGrid.innerHTML = '';
+
+  const year = date.getFullYear();
+  const month = date.getMonth();
+
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+  for (let i = 0; i < firstDay; i++) {
+    const empty = document.createElement('span');
+    daysGrid.appendChild(empty);
+  }
+
+  for (let day = 1; day <= daysInMonth; day++) {
+    const dayCell = document.createElement('span');
+    dayCell.textContent = day;
+
+    const today = new Date();
+    if (today.getDate() === day && today.getMonth() === month && today.getFullYear() === year) {
+      dayCell.classList.add('today');
+    }
+
+    if (selectedDate && selectedDate.getDate() === day &&
+        selectedDate.getMonth() === month && selectedDate.getFullYear() === year) {
+      dayCell.classList.add('selected');
+    }
+
+    dayCell.addEventListener('click', () => {
+      selectedDate = new Date(year, month, day);
+      // dateInput.value = formatDate(selectedDate);
+
+      const previouslySelected = daysGrid.querySelector('.selected');
+      if (previouslySelected) previouslySelected.classList.remove('selected');
+      dayCell.classList.add('selected');
+
+      // setTimeout(() => calendar.classList.remove('show'), 300);
+    });
+
+    daysGrid.appendChild(dayCell);
+  }
+}
+
+generateCalendar(currentDate);
