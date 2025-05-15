@@ -120,24 +120,67 @@ function calculateTime() {
     let updateTime = setInterval(function() {
 
         let now = new Date();
-        let diff = now - dateTime;
+        
+        let years = now.getFullYear() - dateTime.getFullYear();
+        let months = now.getMonth() - dateTime.getMonth();
+        let days = now.getDate() - dateTime.getDate();
+        
+        if (days < 0) {
+          months--;
+          const prevMon = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+          days += prevMon;
+        }
 
-        let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        if (months < 0) {
+          years--;
+          months += 12;
+        }        
+
+        years = (years < 10) ? `0${years}` : years
+        months = (months < 10) ? `0${months}` : months
         days = (days < 10) ? `0${days}` : days
 
-        let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        hours = (hours < 10) ? `0${hours}` : hours
+        let diff = now - dateTime;
 
-        let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        // let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+        let hours = now.getHours() - dateTime.getHours();
+
+        if (hours < 0) {
+            hours = 24 + hours
+            days = days - 1
+        }
+
+        // let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        let minutes = now.getMinutes() - dateTime.getMinutes();
+        
+        if (minutes < 0) {
+            minutes = 60 + minutes
+            hours = hours - 1
+        }
+
+        // let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        let seconds = now.getSeconds() - dateTime.getSeconds();
+        
+        if (seconds < 0) {
+            seconds = 60 + seconds
+            minutes = minutes - 1
+        }
+
+        // let mseconds = Math.floor((diff % (1000)) / 1);
+        let mseconds = now.getMilliseconds() - dateTime.getMilliseconds();
+
+        if (mseconds < 0) {
+            mseconds = 1000 + mseconds
+            seconds = seconds - 1
+        }
+
         minutes = (minutes < 10) ? `0${minutes}` : minutes
-
-        let seconds = Math.floor((diff % (1000 * 60)) / 1000);
         seconds = (seconds < 10) ? `0${seconds}` : seconds
-
-        let mseconds = Math.floor((diff % (1000)) / 1);
+        hours = (hours < 10) ? `0${hours}` : hours
         mseconds = (mseconds < 100) ? ((mseconds < 10) ? `00${mseconds}` : `0${mseconds}`) : mseconds
 
-        daysDisplay.textContent = `${days}`;
+        daysDisplay.textContent = `${years} : ${months} : ${days}`;
         timeDisplay.textContent = `${hours} : ${minutes} : ${seconds} : ${mseconds}`;
     })
 }
