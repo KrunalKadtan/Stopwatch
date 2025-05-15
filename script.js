@@ -221,3 +221,13 @@ document.addEventListener('click', (event) => {
     yearOptions.classList.remove('show');
   }
 });
+
+const dayNames = document.querySelector('#dayNames');
+
+const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+days.forEach((dayName) => {
+    const span = document.createElement('span');
+    span.textContent = dayName;
+    dayNames.appendChild(span);
+})
