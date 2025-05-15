@@ -46,7 +46,7 @@ function createNumbers(mode) {
             const x = centerX + radius * Math.sin(rad)
             const y = centerY - radius * Math.cos(rad)
 
-            console.log(x, y)
+            // console.log(x, y)
 
             const num = document.createElement('div')
             num.className = 'number'
@@ -131,3 +131,93 @@ function calculateTime() {
 }
 
 createNumbers(mode)
+
+
+
+const calendar = document.getElementById('input-date-container');;
+const selectedMonth = document.getElementById('selectedMonth');
+const monthOptions = document.getElementById('monthOptions');
+const selectedYear = document.getElementById('selectedYear');
+const yearOptions = document.getElementById('yearOptions');
+
+let currentDate = new Date()
+let selectedDate = null
+
+
+
+
+function formatDate(date) {
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+  return `${day}-${month}-${year}`;
+}
+
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+months.forEach((monthName, index) => {
+  const li = document.createElement('li');
+  li.textContent = monthName;
+  li.addEventListener('click', () => {
+    selectedMonth.textContent = monthName;
+    currentDate.setMonth(index);
+    generateCalendar(currentDate);
+    monthOptions.querySelectorAll('li').forEach(item => item.classList.remove('selected'));
+    li.classList.add('selected');
+    monthOptions.classList.remove('show');
+  });
+  monthOptions.appendChild(li);
+});
+
+for (let y = 1980; y <= 2100; y++) {
+  const li = document.createElement('li');
+  li.textContent = y;
+  li.addEventListener('click', () => {
+    selectedYear.textContent = y;
+    currentDate.setFullYear(y);
+    generateCalendar(currentDate);
+    yearOptions.querySelectorAll('li').forEach(item => item.classList.remove('selected'));
+    li.classList.add('selected');
+    yearOptions.classList.remove('show');
+  });
+  yearOptions.appendChild(li);
+}
+
+selectedMonth.addEventListener('click', (event) => {
+    event.stopPropagation();
+    monthOptions.classList.toggle('show');
+    yearOptions.classList.remove('show');
+
+    const currentMonth = currentDate.getMonth();
+    monthOptions.querySelectorAll('li').forEach((item,index) => {
+        item.classList.toggle('selected', index === currentMonth);
+    });
+
+    setTimeout(() => {
+        const selectedMonthItem = monthOptions.querySelector('li.selected');
+        if (selectedMonthItem) selectedMonthItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 50);
+});
+
+selectedYear.addEventListener('click', (event) => {
+  event.stopPropagation();
+  yearOptions.classList.toggle('show');
+  monthOptions.classList.remove('show');
+
+  const currentYear = currentDate.getFullYear();
+  yearOptions.querySelectorAll('li').forEach((item) => {
+    item.classList.toggle('selected', parseInt(item.textContent) === currentYear);
+  });
+
+  setTimeout(() => {
+    const selectedYearItem = yearOptions.querySelector('li.selected');
+    if (selectedYearItem) selectedYearItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 50);
+});
+
+document.addEventListener('click', (event) => {
+  if (!event.target.closest('.custom-dropdown')) {
+    monthOptions.classList.remove('show');
+    yearOptions.classList.remove('show');
+  }
+});
