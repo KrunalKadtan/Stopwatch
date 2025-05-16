@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,14 +8,15 @@
 </head>
 <body>
 
+    <!-- Start New Clock Button -->
     <div id="startNewClock">+</div>
 
+    <!-- Date and Time Input Section -->
     <div id="input-field">
 
+        <!-- Calendar Input -->
         <div id="input-date-container">
             <div id="calendarHeader">
-                <!-- <button id="prevMonth">◀</button> -->
-
                 <div class="custom-dropdown">
                     <div class="selected-option" id="selectedMonth">Select Month</div>
                     <ul class="options-list" id="monthOptions"></ul>
@@ -25,14 +25,12 @@
                     <div class="selected-option" id="selectedYear">Select Year</div>
                     <ul class="options-list" id="yearOptions"></ul>
                 </div>
-
-                <!-- <button id="nextMonth">▶</button> -->
             </div>
-
             <div id="dayNames"></div>
             <div id="daysGrid"></div>
         </div>
 
+        <!-- Time Input -->
         <div id="input-time-container">
             <div id="digital-time-container">
                 <div class="time-box" id="hour-box">00</div>
@@ -54,8 +52,10 @@
                 <div class="btn" onclick="calculateTime()">OK</div>
             </div>
         </div>
+
     </div>
 
+    <!-- Watch Output Section -->
     <div id="container">
         <div id="watch">
             <div id="days"></div>

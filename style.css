@@ -1,4 +1,4 @@
-
+/* -------------------- RESET -------------------- */
 * {
     margin: 0;
     padding: 0;
@@ -8,75 +8,76 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
+    background-color: #f8f8f8;
+    color: #222;
 }
 
+/* -------------------- START CLOCK BUTTON -------------------- */
 #startNewClock {
-    width: 10vw;
-    height: 10vw;
-
+    width: 12vw;
+    height: 12vw;
     margin: 5% auto;
-
     font-size: 8vw;
     font-weight: bold;
-
-    border: 2px solid black;
-    border-radius: 30%;
-
+    border-radius: 35%;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: background 0.2s, transform 0.2s;
+    cursor: pointer;
+    background-color: white;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+
 }
 
 #startNewClock:hover {
-    cursor: pointer;
-    background: #bbb;
+    background: #ccc;
+    transform: scale(1.10);
 }
 
+/* -------------------- INPUT FIELD CONTAINER -------------------- */
 #input-field {
     width: max-content;
-
     margin: 0 auto;
-    border: 2px solid black;
-    border-radius: 18px;
-
-    /* display: flex; */
+    /* border: 0.5vw solid #333; */
+    border-radius: 6vw;
     display: none;
     flex-direction: row;
+    background-color: white;
+    box-shadow: 0 0 5vw rgba(0,0,0,0.6);
 }
 
+/* -------------------- CALENDAR SECTION -------------------- */
 #input-date-container {
     width: 50vw;
     height: 50vw;
-
-    margin: 3% auto;
-
-    /* border: 2px solid black; */
-    border-radius: 12px;
+    margin: 3% 1%;
+    border-radius: 3vw;
+    background-color: #fff;
+    padding: 3%;
 }
 
 #calendarHeader {
+    width: 100%;
     display: flex;
-    flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    margin: 4% 5%;
-
+    margin: 3% 2%;
     font-size: 3vw;
 }
 
 .custom-dropdown {
     position: relative;
-    display: inline-block;
-    width: 20vw;
-    max-height: 10vw;
+    width: 21vw;
+    max-width: 30vw;
 }
 
 .selected-option {
     background-color: #2a2a2a;
     color: white;
     padding: 1vw;
-    border: 1px solid #555;
-    border-radius: 8px;
+    border: 0.3vw solid #555;
+    border-radius: 2vw;
     cursor: pointer;
     text-align: center;
 }
@@ -97,12 +98,10 @@ body {
     width: 100%;
     max-height: 35vw;
     overflow-y: auto;
-    overflow-x: hidden;
-    padding: 0;
-    margin: 5% 0 0 0;
     text-align: center;
-    scrollbar-width: thin;
-    scrollbar-color: #666 transparent;
+    padding: 0;
+    margin-top: 5%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .options-list.show {
@@ -117,13 +116,13 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
-    /* border: 2px solid black; */
     border-radius: 1.5vw;
+    transition: background 0.2s;
 }
 
 .options-list li:hover {
-    background-color: #a1a1a1;
+    background-color: #666;
+    color: white;
 }
 
 .options-list li.selected {
@@ -136,34 +135,27 @@ body {
     width: 6px;
 }
 
-.options-list::-webkit-scrollbar-track {
-    background: transparent;
-}
-
 .options-list::-webkit-scrollbar-thumb {
-    background-color: #666;
+    background-color: #888;
     border-radius: 3px;
 }
 
 .options-list::-webkit-scrollbar-thumb:hover {
-    background-color: #888;
+    background-color: #aaa;
 }
 
-#dayNames {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    text-align: center;
-    font-weight: bold;
-    font-size: 2.6vw;
-    margin: 8% 1%;
-}
-
-#daysGrid {
+#dayNames, #daysGrid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     text-align: center;
     margin: 5% 1%;
     font-size: 2.8vw;
+}
+
+#dayNames {
+    font-weight: bold;
+    font-size: 2.6vw;
+    margin-top: 8%;
 }
 
 #daysGrid span {
@@ -179,7 +171,7 @@ body {
 }
 
 #daysGrid span:hover {
-    background-color: #b7b4b4;
+    background-color: #ccc;
 }
 
 #daysGrid span:active {
@@ -196,51 +188,43 @@ body {
     color: white;
 }
 
+/* -------------------- TIME INPUT SECTION -------------------- */
 #input-time-container {
     width: 30vw;
     height: 50vw;
-
-    margin: 3% auto;
-
-    /* border: 2px solid black; */
-    border-radius: 12px;
+    margin: 3% 1%;
+    border-radius: 3vw;
+    background-color: #fff;
 }
 
 #digital-time-container {
     width: 80%;
     height: 20%;
-
     margin: 8% auto;
-
-    border: 2px solid transparent;
-    border-radius: 15px;
-
+    border-radius:2vw;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+
+    /* border: 2px solid black; */
 }
 
 .time-box {
     width: 40%;
     height: 90%;
-
-    border: 2px solid black;
-    border-radius: 12px;
-
+    /* border: 0.35vw solid black; */
+    border-radius: 2vw;
     display: flex;
     justify-content: center;
     align-items: center;
-
     font-size: 5vw;
+    background-color: white;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
 #time-separator {
     width: 7%;
     height: 90%;
-
-    /* border: 2px solid black; */
-    border-radius: 12px;
-
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -250,54 +234,41 @@ body {
 .dot {
     width: 45%;
     height: 10%;
-
-    background: black;
-
-    border: 2px solid black;
+    background: rgba(0,0,0,0.2);
     border-radius: 50%;
 }
 
 #clock-container {
     width: 95%;
     height: 57%;
-
     margin: auto;
-
-    /* border: 2px solid black; */
-    border-radius: 10px;
+    border-radius: 2vw;
 }
 
 .clock {
     position: relative;
-
     width: 90%;
-    height: 90%;
-
+    aspect-ratio: 1 / 1;
     margin: 5% auto;
-
-    border: 2px solid black;
+    border: 0.35vw solid transparent;
     border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
 }
 
 .number {
     position: absolute;
-
     width: 15%;
     height: 15%;
-
-    font-size: 1.8vw;
-
+    font-size: 1.9vw;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    text-align: center;
-    /* border: 2px solid  black; */
-    border-radius: 50%;
-
     transform: translate(-50%, -50%);
     cursor: pointer;
-  transition: background 0.2s;
+    border-radius: 50%;
+    transition: background 0.2s;
+    text-align: center;
 }
 
 .number:hover {
@@ -307,50 +278,40 @@ body {
 .hand {
     width: 2%;
     height: 18%;
-
     background: black;
-
     margin: 32% auto;
-
-    border: 2px solid black;
-    border-radius: 20px;
-
+    border-radius: 10vw;
     transform-origin: bottom center;
     transform: rotate(0deg);
-    
     transition: transform 0.3s ease-in-out;
 }
 
 #btn-container {
     width: 90%;
-    height: 10%;
-
     margin: 5% auto;
-
-    /* border: 2px solid black; */
-    border-radius: 12px;
-
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    border-radius: 2vw;
 }
 
 .btn {
     margin: 1% auto;
-    padding: 3%;
-    padding-inline: 5%;
-
+    padding: 3% 5%;
     font-size: 2.1vw;
-
-    /* border: 2px solid black; */
-    border-radius: 12px;
+    border-radius: 2vw;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    border: none;
 }
 
 .btn:hover {
-    cursor: pointer;
-    background: #bbb;
+    /* background: #bbb; */
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    transform: scale(1.05);
 }
 
+/* -------------------- WATCH DISPLAY SECTION -------------------- */
 #container {
     display: flex;
     justify-content: center;
@@ -358,20 +319,20 @@ body {
 }
 
 #watch {
-    width: 300px;
-    height: 300px;
-    border: 10px solid black;
+    width: 40vw;
+    height: 40vw;
     border-radius: 50%;
-
-    /* display: flex; */
     display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: white;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
 }
 
 #days, #time {
-    font-size: 30px;
+    font-size: 4.5vw;
+    color: #333;
 }
 
 #days {
