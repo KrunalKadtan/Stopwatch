@@ -117,6 +117,8 @@ function calculateTime() {
 
     console.log(dateTime)
 
+    showWatch()
+
     let updateTime = setInterval(function() {
 
         let now = new Date();
@@ -183,9 +185,11 @@ function calculateTime() {
         daysDisplay.textContent = `${years} : ${months} : ${days}`;
         timeDisplay.textContent = `${hours} : ${minutes} : ${seconds} : ${mseconds}`;
     })
+
+
 }
 
-createNumbers(mode)
+
 
 
 
@@ -325,4 +329,31 @@ function generateCalendar(date) {
   }
 }
 
-generateCalendar(currentDate);
+
+const inputDateTime = document.querySelector('#startNewClock')
+const inputField = document.querySelector('#input-field')
+
+inputDateTime.addEventListener('click', (event) => {
+  // event.stopPropagation();
+  // inputField.classList.add('show');
+
+  inputField.style.display = 'flex'
+  generateCalendar(currentDate);
+  createNumbers(mode)
+});
+
+document.addEventListener('click', (event) => {
+  if (!inputField.contains(event.target) && event.target !== inputDateTime) {
+    // inputField.classList.remove('show');
+    inputField.style.display = 'none'
+    clearClock()
+  }
+})
+
+const watch = document.querySelector('#watch')
+
+function showWatch () {
+    watch.style.display = 'flex'
+    inputField.style.display = 'none'
+    clearClock()
+}
