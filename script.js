@@ -103,86 +103,7 @@ function createNumbers(mode) {
 }
 
 
-function calculateTime() {
-    const timeDisplay = document.querySelector('#time');
-    const daysDisplay = document.querySelector('#days');
 
-    const hours = String(selectedHour).padStart(2, '0');
-    const minutes = String(selectedMinute).padStart(2, '0');
-
-    // Extract day, month, year from selectedDate
-    const [day, month, year] = formatDate(selectedDate).split('-');
-    const dateTime = new Date(year, month - 1, day, hours, minutes);
-
-    console.log(dateTime);
-
-    showWatch();
-
-    let updateTime = setInterval(function () {
-        let now = new Date();
-
-        // ----- Year, Month, Day Difference -----
-        let years = now.getFullYear() - dateTime.getFullYear();
-        let months = now.getMonth() - dateTime.getMonth();
-        let days = now.getDate() - dateTime.getDate();
-
-        if (days < 0) {
-            months--;
-            const prevMon = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-            days += prevMon;
-        }
-
-        if (months < 0) {
-            years--;
-            months += 12;
-        }
-
-        // Format values
-        years = years < 10 ? `0${years}` : years;
-        months = months < 10 ? `0${months}` : months;
-        days = days < 10 ? `0${days}` : days;
-
-        // ----- Time Difference -----
-        let hours = now.getHours() - dateTime.getHours();
-        let minutes = now.getMinutes() - dateTime.getMinutes();
-        let seconds = now.getSeconds() - dateTime.getSeconds();
-        let mseconds = now.getMilliseconds() - dateTime.getMilliseconds();
-
-        // Adjust negative time values
-        if (mseconds < 0) {
-            mseconds += 1000;
-            seconds--;
-        }
-
-        if (seconds < 0) {
-            seconds += 60;
-            minutes--;
-        }
-
-        if (minutes < 0) {
-            minutes += 60;
-            hours--;
-        }
-
-        if (hours < 0) {
-            hours += 24;
-            days--;
-        }
-
-        // Format time values
-        hours = hours < 10 ? `0${hours}` : hours;
-        minutes = minutes < 10 ? `0${minutes}` : minutes;
-        seconds = seconds < 10 ? `0${seconds}` : seconds;
-
-        if (mseconds < 100) {
-            mseconds = mseconds < 10 ? `00${mseconds}` : `0${mseconds}`;
-        }
-
-        // Update Display
-        daysDisplay.textContent = `${years} : ${months} : ${days}`;
-        timeDisplay.textContent = `${hours} : ${minutes} : ${seconds} : ${mseconds}`;
-    });
-}
 
 // ========================
 // Date Formatting Utility
@@ -372,13 +293,121 @@ document.addEventListener('click', (event) => {
   }
 });
 
-// ========================
-// Show Watch Area
-// ========================
-const watch = document.querySelector('#watch');
+let stopwatchList = [];
 
-function showWatch() {
-  watch.style.display = 'flex';
-  inputField.style.display = 'none';
-  clearClock();
+function newStopwatch(id, dateTime) {
+  this.id = id;
+  this.startTime = dateTime;
+  this.interval = setInterval(() => {
+    updateThatStopwatch(this.id);
+  });
 }
+
+function updateThatStopwatch(id) {
+  let stopwatch = stopwatchList.find(watch => watch.id === id);
+  if (!stopwatch) return;
+
+  let now = new Date();
+  let startTime = stopwatch.startTime;
+
+  // ----- Year, Month, Day Difference -----
+  let years = now.getFullYear() - startTime.getFullYear();
+  let months = now.getMonth() - startTime.getMonth();
+  let days = now.getDate() - startTime.getDate();
+
+  if (days < 0) {
+    months--;
+    const prevMon = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+    days += prevMon;
+  }
+
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+
+  // Format values
+  years = years < 10 ? `0${years}` : years;
+  months = months < 10 ? `0${months}` : months;
+  days = days < 10 ? `0${days}` : days;
+
+  // ----- Time Difference -----
+  let hours = now.getHours() - startTime.getHours();
+  let minutes = now.getMinutes() - startTime.getMinutes();
+  let seconds = now.getSeconds() - startTime.getSeconds();
+  let mseconds = now.getMilliseconds() - startTime.getMilliseconds();
+
+  // Adjust negative time values
+  if (mseconds < 0) {
+    mseconds += 1000;
+    seconds--;
+  }
+
+  if (seconds < 0) {
+    seconds += 60;
+    minutes--;
+  }
+
+  if (minutes < 0) {
+    minutes += 60;
+    hours--;
+  }
+
+  if (hours < 0) {
+    hours += 24;
+    days--;
+  }
+
+  // Format time values
+  hours = hours < 10 ? `0${hours}` : hours;
+  minutes = minutes < 10 ? `0${minutes}` : minutes;
+  seconds = seconds < 10 ? `0${seconds}` : seconds;
+
+  if (mseconds < 100) {
+    mseconds = mseconds < 10 ? `00${mseconds}` : `0${mseconds}`;
+  }
+
+  // Update the stopwatch display
+  document.querySelector(`#time-${id}`).textContent = `${years} : ${months} : ${days}`;
+  document.querySelector(`#days-${id}`).textContent = `${hours} : ${minutes} : ${seconds} : ${mseconds}`;
+}
+
+function calculateTime() {
+
+  inputField.style.display = 'none';
+
+  const stopwatchContainer = document.querySelector('#container');
+
+  const hours = String(selectedHour).padStart(2, '0');
+  const minutes = String(selectedMinute).padStart(2, '0');
+
+  // Extract day, month, year from selectedDate
+  const [day, month, year] = formatDate(selectedDate).split('-');
+  const dateTime = new Date(year, month - 1, day, hours, minutes);
+
+  const id = Date.now();
+
+  const stopWatch = document.createElement('div');
+  stopWatch.className = 'watch';
+  stopWatch.id = `stopwatch-${id}`;
+
+  stopwatchContainer.appendChild(stopWatch);
+
+  const timeDisplay = document.createElement('div');
+  timeDisplay.className = 'time';
+  timeDisplay.id = `time-${id}`;
+  const daysDisplay = document.createElement('div');
+  daysDisplay.className = 'days';
+  daysDisplay.id = `days-${id}`;
+
+  stopWatch.appendChild(timeDisplay);
+  stopWatch.appendChild(daysDisplay);
+
+  let newWatch = new newStopwatch(id, dateTime);
+  stopwatchList.push(newWatch);
+
+  selectedDate = null;
+  selectedHour = null;
+  selectedMinute = null;
+}
+

@@ -313,16 +313,17 @@ body {
 
 /* -------------------- WATCH DISPLAY SECTION -------------------- */
 #container {
-    display: flex;
-    justify-content: center;
-    margin: 12% auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6%;
+    margin: 10%;
 }
 
-#watch {
+.watch {
     width: 40vw;
     height: 40vw;
     border-radius: 50%;
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -330,15 +331,15 @@ body {
     box-shadow: 0 0 15px rgba(0,0,0,0.5);
 }
 
-#days, #time {
+.days, .time {
     font-size: 4.5vw;
     color: #333;
 }
 
-#days {
+.days {
     margin-bottom: 15%;
 }
 
-#time {
+.time {
     margin-bottom: 15%;
 }
