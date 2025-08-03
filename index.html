@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stopwatch</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <!-- Start New Clock Button -->
@@ -14,42 +16,48 @@
     <!-- Date and Time Input Section -->
     <div id="input-field">
 
-        <!-- Calendar Input -->
-        <div id="input-date-container">
-            <div id="calendarHeader">
-                <div class="custom-dropdown">
-                    <div class="selected-option" id="selectedMonth">Select Month</div>
-                    <ul class="options-list" id="monthOptions"></ul>
-                </div>
-                <div class="custom-dropdown">
-                    <div class="selected-option" id="selectedYear">Select Year</div>
-                    <ul class="options-list" id="yearOptions"></ul>
-                </div>
-            </div>
-            <div id="dayNames"></div>
-            <div id="daysGrid"></div>
+        <div id="input-title-container">
+            <input type="text" id="input-title" placeholder="Enter title">
         </div>
 
-        <!-- Time Input -->
-        <div id="input-time-container">
-            <div id="digital-time-container">
-                <div class="time-box" id="hour-box">00</div>
-                <div id="time-separator">
-                    <div class="dot"></div>
-                    <div class="dot"></div>
+        <div id="date-time-input-container">
+            <!-- Calendar Input -->
+            <div id="input-date-container">
+                <div id="calendarHeader">
+                    <div class="custom-dropdown">
+                        <div class="selected-option" id="selectedMonth">Select Month</div>
+                        <ul class="options-list" id="monthOptions"></ul>
+                    </div>
+                    <div class="custom-dropdown">
+                        <div class="selected-option" id="selectedYear">Select Year</div>
+                        <ul class="options-list" id="yearOptions"></ul>
+                    </div>
                 </div>
-                <div class="time-box" id="minute-box">00</div>
+                <div id="dayNames"></div>
+                <div id="daysGrid"></div>
             </div>
 
-            <div id="clock-container">
-                <div class="clock" id="clock">
-                    <div class="hand" id="hourHand"></div>
+            <!-- Time Input -->
+            <div id="input-time-container">
+                <div id="digital-time-container">
+                    <div class="time-box" id="hour-box">00</div>
+                    <div id="time-separator">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                    <div class="time-box" id="minute-box">00</div>
                 </div>
-            </div>
 
-            <div id="btn-container">
-                <div class="btn">Cancel</div>
-                <div class="btn" onclick="calculateTime()">OK</div>
+                <div id="clock-container">
+                    <div class="clock" id="clock">
+                        <div class="hand" id="hourHand"></div>
+                    </div>
+                </div>
+
+                <div id="btn-container">
+                    <div class="btn">Cancel</div>
+                    <div class="btn" onclick="calculateTime()">OK</div>
+                </div>
             </div>
         </div>
 
@@ -61,4 +69,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>

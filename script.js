@@ -295,9 +295,10 @@ document.addEventListener('click', (event) => {
 
 let stopwatchList = [];
 
-function newStopwatch(id, dateTime) {
+function newStopwatch(id, dateTime, title) {
   this.id = id;
   this.startTime = dateTime;
+  this.title = title;
   this.interval = setInterval(() => {
     updateThatStopwatch(this.id);
   });
@@ -368,8 +369,8 @@ function updateThatStopwatch(id) {
   }
 
   // Update the stopwatch display
-  document.querySelector(`#time-${id}`).textContent = `${years} : ${months} : ${days}`;
-  document.querySelector(`#days-${id}`).textContent = `${hours} : ${minutes} : ${seconds} : ${mseconds}`;
+  document.querySelector(`#days-${id}`).textContent = `${years} : ${months} : ${days}`;
+  document.querySelector(`#time-${id}`).textContent = `${hours} : ${minutes} : ${seconds} : ${mseconds}`;
 }
 
 function calculateTime() {
@@ -377,6 +378,8 @@ function calculateTime() {
   inputField.style.display = 'none';
 
   const stopwatchContainer = document.querySelector('#container');
+
+  const title = document.getElementById('input-title').value || 'Untitled';
 
   const hours = String(selectedHour).padStart(2, '0');
   const minutes = String(selectedMinute).padStart(2, '0');
@@ -393,6 +396,10 @@ function calculateTime() {
 
   stopwatchContainer.appendChild(stopWatch);
 
+  const titleDisplay = document.createElement('div');
+  titleDisplay.className = 'title';
+  titleDisplay.textContent = title;
+  titleDisplay.id = `title-${id}`;
   const timeDisplay = document.createElement('div');
   timeDisplay.className = 'time';
   timeDisplay.id = `time-${id}`;
@@ -400,10 +407,11 @@ function calculateTime() {
   daysDisplay.className = 'days';
   daysDisplay.id = `days-${id}`;
 
-  stopWatch.appendChild(timeDisplay);
+  stopWatch.appendChild(titleDisplay);
   stopWatch.appendChild(daysDisplay);
+  stopWatch.appendChild(timeDisplay);
 
-  let newWatch = new newStopwatch(id, dateTime);
+  let newWatch = new newStopwatch(id, dateTime, title);
   stopwatchList.push(newWatch);
 
   selectedDate = null;
