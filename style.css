@@ -1,379 +1,410 @@
-/* -------------------- RESET -------------------- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root {
+  --main-bg: #f8f8f8;
+  --card-bg: #fff;
+  --accent: #4285f4;
+  --primary: #2a2a2a;
+  --highlight: #00bcd4;
+  --shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  --shadow-heavy: 0 0 15px rgba(0, 0, 0, 0.5);
+  --radius: 2vw;
+  --focus-outline: 2px solid #4285f4;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    background-color: #f8f8f8;
-    color: #222;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--main-bg);
+  color: #222;
+  text-align: center;
+  margin: 0;
 }
 
-/* -------------------- START CLOCK BUTTON -------------------- */
+/* Visually Hidden Utility Class for a11y */
+.visually-hidden {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}
+
 #startNewClock {
-    width: 12vw;
-    height: 12vw;
-    margin: 5% auto;
-    font-size: 8vw;
-    font-weight: bold;
-    border-radius: 35%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background 0.2s, transform 0.2s;
-    cursor: pointer;
-    background-color: white;
-    box-shadow: 0 0 15px rgba(0,0,0,0.5);
-
+  width: 12vw;
+  height: 12vw;
+  margin: 5% auto 2% auto;
+  font-size: 8vw;
+  font-weight: bold;
+  border-radius: 35%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--card-bg);
+  box-shadow: var(--shadow-heavy);
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s, transform 0.2s;
 }
 
+#startNewClock:focus,
 #startNewClock:hover {
-    background: #ccc;
-    transform: scale(1.10);
+  background: #ccc;
+  transform: scale(1.1);
 }
 
-/* -------------------- INPUT FIELD CONTAINER -------------------- */
+#startNewClock:focus {
+  outline: var(--focus-outline);
+}
+
+/* Input Field */
 #input-field {
-    width: max-content;
-    margin: 0 auto;
-    /* border: 0.5vw solid #333; */
-    border-radius: 6vw;
-    display: none;
-    flex-direction: column;
-    background-color: white;
-    box-shadow: 0 0 5vw rgba(0,0,0,0.6);
+  width: max-content;
+  margin: 0 auto;
+  border-radius: 6vw;
+  display: none;
+  flex-direction: column;
+  background: var(--card-bg);
+  box-shadow: 0 0 5vw rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  position: relative;
 }
-
-/* -------------------- TITLE SECTION -------------------- */
+fieldset {
+  border: none;
+  padding: 0 2vw 2vw 2vw;
+}
+legend {
+  font-size: 3vw;
+  font-weight: bold;
+  color: var(--accent);
+  margin-bottom: 1vw;
+}
 #input-title-container {
-    /* border: 2px solid black; */
-    width: 50%;
-    margin: 3% auto 1% auto;
-    border-radius: 3vw;
-    background-color: #fff;
-    padding: 2%;
+  width: 60%;
+  margin: 3% auto 1% auto;
+  border-radius: var(--radius);
+  background: #fff;
+  padding: 2%;
 }
-
 #input-title {
-    width: 100%;
-    height: 100%;
-    font-size: 4vw;
-    border: 0.3vw solid transparent;
-    border-bottom-color: #333;
-    border-radius: 2vw;
-    outline: none;
-    background-color: transparent;
-    color: #333;
-    text-align: center;
+  width: 100%;
+  font-size: 4vw;
+  border: 0.3vw solid transparent;
+  border-bottom: 0.3vw solid #333;
+  border-radius: var(--radius);
+  background: transparent;
+  color: #333;
+  text-align: center;
+  outline: none;
 }
-
+#input-title:focus {
+  outline: var(--focus-outline);
+}
 #date-time-input-container {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
-/* -------------------- CALENDAR SECTION -------------------- */
+
+/* Calendar */
 #input-date-container {
-    width: 50vw;
-    height: 50vw;
-    margin: 2% 1%;
-    border-radius: 3vw;
-    background-color: #fff;
-    padding: 3%;
+  width: 50vw;
+  height: 50vw;
+  margin: 2% 1%;
+  border-radius: 3vw;
+  background: #fff;
+  padding: 3%;
 }
-
 #calendarHeader {
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    margin: 3% 2%;
-    font-size: 3vw;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 3% 2%;
+  font-size: 3vw;
 }
-
 .custom-dropdown {
-    position: relative;
-    width: 21vw;
-    max-width: 30vw;
+  position: relative;
+  width: 21vw;
+  max-width: 30vw;
 }
-
 .selected-option {
-    background-color: #2a2a2a;
-    color: white;
-    padding: 1vw;
-    border: 0.3vw solid #555;
-    border-radius: 2vw;
-    cursor: pointer;
-    text-align: center;
+  font-size: 2.5vw;
+  width: 100%;
+  background: var(--primary);
+  color: #fff;
+  padding: 1vw;
+  border: 0.3vw solid #555;
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-align: center;
+  border: none;
 }
-
+.selected-option:focus {
+  outline: var(--focus-outline);
+}
 .options-list {
-    opacity: 0;
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: all 0.3s ease;
-    pointer-events: none;
-    position: absolute;
-    background-color: #2a2a2a;
-    color: whitesmoke;
-    z-index: 20;
-    list-style: none;
-    border: 1px solid #555;
-    border-radius: 2vw;
-    width: 100%;
-    max-height: 35vw;
-    overflow-y: auto;
-    text-align: center;
-    padding: 0;
-    margin-top: 5%;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: scaleY(0);
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: var(--primary);
+  color: #eee;
+  z-index: 11;
+  list-style: none;
+  border: 1px solid #555;
+  border-radius: var(--radius);
+  max-height: 35vw;
+  overflow-y: auto;
+  text-align: center;
+  padding: 0;
+  margin-top: 5%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
-
 .options-list.show {
-    opacity: 1;
-    transform: scaleY(1);
-    pointer-events: auto;
+  opacity: 1;
+  transform: scaleY(1);
+  pointer-events: auto;
 }
-
 .options-list li {
-    padding: 4% 8%;
-    cursor: pointer;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    border-radius: 1.5vw;
-    transition: background 0.2s;
+  padding: 4% 8%;
+  cursor: pointer;
+  border-radius: 1.5vw;
+  transition: background 0.2s;
 }
-
-.options-list li:hover {
-    background-color: #666;
-    color: white;
+.options-list li:hover,
+.options-list li:focus {
+  background: #666;
+  color: #fff;
 }
-
 .options-list li.selected {
-    background-color: #4285f4;
-    color: white;
-    font-weight: bold;
+  background: var(--accent);
+  color: #fff;
+  font-weight: bold;
 }
-
-.options-list::-webkit-scrollbar {
-    width: 6px;
+#dayNames,
+#daysGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: 2.8vw;
+  margin: 5% 1%;
 }
-
-.options-list::-webkit-scrollbar-thumb {
-    background-color: #888;
-    border-radius: 3px;
-}
-
-.options-list::-webkit-scrollbar-thumb:hover {
-    background-color: #aaa;
-}
-
-#dayNames, #daysGrid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    text-align: center;
-    margin: 5% 1%;
-    font-size: 2.8vw;
-}
-
 #dayNames {
-    font-weight: bold;
-    font-size: 2.6vw;
-    margin-top: 8%;
+  font-weight: bold;
+  font-size: 2.6vw;
+  margin-top: 8%;
 }
-
 #daysGrid span {
-    width: 5vw;
-    height: 4vw;
-    margin: 10%;
-    border-radius: 1.5vw;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 0.3s, transform 0.2s;
+  width: 5vw;
+  height: 4vw;
+  margin: 10%;
+  border-radius: 1.5vw;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s, transform 0.2s;
+}
+#daysGrid span:hover,
+#daysGrid span:focus {
+  background: #ccc;
+  outline: var(--focus-outline);
+}
+#daysGrid span.selected {
+  background: var(--accent);
+  color: #fff;
+}
+#daysGrid span.today {
+  background: var(--highlight);
+  color: #fff;
 }
 
-#daysGrid span:hover {
-    background-color: #ccc;
-}
-
-#daysGrid span:active {
-    transform: scale(0.85);
-}
-
-.selected {
-    background-color: #4285f4;
-    color: white;
-}
-
-.today {
-    background-color: #00bcd4;
-    color: white;
-}
-
-/* -------------------- TIME INPUT SECTION -------------------- */
+/* Time Input Section */
 #input-time-container {
-    width: 30vw;
-    height: 50vw;
-    margin: 3% 1%;
-    border-radius: 3vw;
-    background-color: #fff;
+  width: 30vw;
+  height: 50vw;
+  margin: 3% 1%;
+  border-radius: 3vw;
+  background: #fff;
 }
-
 #digital-time-container {
-    width: 80%;
-    height: 20%;
-    margin: 8% auto;
-    border-radius:2vw;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-
-    /* border: 2px solid black; */
+  width: 80%;
+  height: 20%;
+  margin: 8% auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: var(--radius);
 }
-
 .time-box {
-    width: 40%;
-    height: 90%;
-    /* border: 0.35vw solid black; */
-    border-radius: 2vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 5vw;
-    background-color: white;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  width: 40%;
+  height: 90%;
+  border-radius: var(--radius);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 5vw;
+  background: #fff;
+  box-shadow: var(--shadow);
+  outline: none;
 }
-
+.time-box:focus {
+  outline: var(--focus-outline);
+}
 #time-separator {
-    width: 7%;
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
+  width: 7%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
-
 .dot {
-    width: 45%;
-    height: 10%;
-    background: rgba(0,0,0,0.2);
-    border-radius: 50%;
+  width: 45%;
+  height: 10%;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
 }
-
 #clock-container {
-    width: 95%;
-    height: 57%;
-    margin: auto;
-    border-radius: 2vw;
+  width: 95%;
+  height: 57%;
+  margin: auto;
+  border-radius: var(--radius);
 }
-
 .clock {
-    position: relative;
-    width: 90%;
-    aspect-ratio: 1 / 1;
-    margin: 5% auto;
-    border: 0.35vw solid transparent;
-    border-radius: 50%;
-    background-color: #fff;
-    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  position: relative;
+  width: 90%;
+  aspect-ratio: 1/1;
+  margin: 5% auto;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: var(--shadow-heavy);
 }
-
 .number {
-    position: absolute;
-    width: 15%;
-    height: 15%;
-    font-size: 1.9vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-    border-radius: 50%;
-    transition: background 0.2s;
-    text-align: center;
+  position: absolute;
+  width: 15%;
+  height: 15%;
+  font-size: 1.9vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  border-radius: 50%;
+  text-align: center;
+  transition: background 0.2s;
 }
-
-.number:hover {
-    background: #bbb;
+.number:hover,
+.number:focus {
+  background: #bbb;
+}
+.number:focus {
+  outline: var(--focus-outline);
 }
 
 .hand {
-    width: 2%;
-    height: 18%;
-    background: black;
-    margin: 32% auto;
-    border-radius: 10vw;
-    transform-origin: bottom center;
-    transform: rotate(0deg);
-    transition: transform 0.3s ease-in-out;
+  width: 2%;
+  height: 18%;
+  background: #222;
+  margin: 32% auto;
+  border-radius: 10vw;
+  transform-origin: bottom center;
+  transform: rotate(0deg);
+  transition: transform 0.3s ease-in-out;
+
+  position: absolute;
+  top: 0%;
+  left: 50%;
 }
 
 #btn-container {
-    width: 90%;
-    margin: 5% auto;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    border-radius: 2vw;
+  width: 90%;
+  margin: 5% auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: var(--radius);
 }
 
 .btn {
-    margin: 1% auto;
-    padding: 3% 5%;
-    font-size: 2.1vw;
-    border-radius: 2vw;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
-    border: none;
+  margin: 1% auto;
+  padding: 3% 5%;
+  font-size: 2.1vw;
+  border-radius: var(--radius);
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s, transform 0.2s;
+  background: var(--accent);
+  color: #fff;
+  font-weight: bold;
 }
-
+.btn:focus,
 .btn:hover {
-    /* background: #bbb; */
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    transform: scale(1.05);
+  background: var(--highlight);
+  outline: var(--focus-outline);
+  transform: scale(1.05);
 }
 
-/* -------------------- WATCH DISPLAY SECTION -------------------- */
+/* Output Section */
 #container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 6%;
-    margin: 10%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6%;
+  margin: 10%;
 }
-
 .watch {
-    width: 40vw;
-    height: 40vw;
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  width: 40vw;
+  height: 40vw;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  box-shadow: var(--shadow-heavy);
+  margin: 0 auto 2vw auto;
+  position: relative;
 }
-
 .title {
-    margin-bottom: 10%;
-    font-size: 5vw;
-    font-weight: bolder;
-    color: #333;
+  margin-bottom: 10%;
+  font-size: 5vw;
+  font-weight: bolder;
+  color: #333;
 }
-
-.days, .time {
-    font-size: 4.5vw;
-    color: #333;
-}
-
-.days {
-    margin-bottom: 10%;
-}
-
+.days,
 .time {
-    margin-bottom: 10%;
+  font-size: 4.5vw;
+  color: #333;
+}
+.days {
+  margin-bottom: 10%;
+}
+.remove-btn {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  background: #f55;
+  color: #fff;
+  font-size: 1.5em;
+  border-radius: 50%;
+  border: none;
+  width: 2em;
+  height: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.remove-btn:focus,
+.remove-btn:hover {
+  background: #c00;
+}
+
+.remove-btn:focus {
+    outline: var(--focus-outline);
 }

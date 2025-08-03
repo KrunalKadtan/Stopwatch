@@ -1,73 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stopwatch</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stopwatch</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <!-- Start New Clock Button -->
-    <div id="startNewClock">+</div>
+  <!-- Start New Clock Button -->
+  <button id="startNewClock" aria-label="Add new stopwatch">+</button>
 
-    <!-- Date and Time Input Section -->
-    <div id="input-field">
-
-        <div id="input-title-container">
-            <input type="text" id="input-title" placeholder="Enter title">
-        </div>
-
-        <div id="date-time-input-container">
-            <!-- Calendar Input -->
-            <div id="input-date-container">
-                <div id="calendarHeader">
-                    <div class="custom-dropdown">
-                        <div class="selected-option" id="selectedMonth">Select Month</div>
-                        <ul class="options-list" id="monthOptions"></ul>
-                    </div>
-                    <div class="custom-dropdown">
-                        <div class="selected-option" id="selectedYear">Select Year</div>
-                        <ul class="options-list" id="yearOptions"></ul>
-                    </div>
-                </div>
-                <div id="dayNames"></div>
-                <div id="daysGrid"></div>
+  <!-- Date and Time Input Section -->
+  <form id="input-field" autocomplete="off" aria-label="Set new stopwatch" tabindex="-1">
+    <fieldset>
+      <!-- <legend>New Stopwatch</legend> -->
+      <div id="input-title-container">
+        <label for="input-title" class="visually-hidden">Stopwatch Title</label>
+        <input type="text" id="input-title" placeholder="Enter title" autocomplete="off" required>
+      </div>
+      <div id="date-time-input-container">
+        <!-- Calendar Input -->
+        <section id="input-date-container" aria-label="Pick date">
+          <div id="calendarHeader">
+            <div class="custom-dropdown" id="month-dropdown">
+              <button
+                class="selected-option"
+                type="button"
+                id="selectedMonth"
+                aria-haspopup="listbox"
+                aria-expanded="false"
+              >Select Month</button>
+              <ul class="options-list" id="monthOptions" tabindex="-1" role="listbox"></ul>
             </div>
-
-            <!-- Time Input -->
-            <div id="input-time-container">
-                <div id="digital-time-container">
-                    <div class="time-box" id="hour-box">00</div>
-                    <div id="time-separator">
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                    </div>
-                    <div class="time-box" id="minute-box">00</div>
-                </div>
-
-                <div id="clock-container">
-                    <div class="clock" id="clock">
-                        <div class="hand" id="hourHand"></div>
-                    </div>
-                </div>
-
-                <div id="btn-container">
-                    <div class="btn">Cancel</div>
-                    <div class="btn" onclick="calculateTime()">OK</div>
-                </div>
+            <div class="custom-dropdown" id="year-dropdown">
+              <button
+                class="selected-option"
+                type="button"
+                id="selectedYear"
+                aria-haspopup="listbox"
+                aria-expanded="false"
+              >Select Year</button>
+              <ul class="options-list" id="yearOptions" tabindex="-1" role="listbox"></ul>
             </div>
-        </div>
+          </div>
+          <div id="dayNames"></div>
+          <div id="daysGrid"></div>
+        </section>
 
-    </div>
+        <!-- Time Input -->
+        <section id="input-time-container" aria-label="Pick time">
+          <div id="digital-time-container">
+            <div class="time-box" id="hour-box" tabindex="0" aria-label="Hour">00</div>
+            <div id="time-separator">
+              <div class="dot"></div>
+              <div class="dot"></div>
+            </div>
+            <div class="time-box" id="minute-box" tabindex="0" aria-label="Minute">00</div>
+          </div>
+          <div id="clock-container">
+            <div class="clock" id="clock">
+              <div class="hand" id="hourHand"></div>
+            </div>
+          </div>
+          <div id="btn-container">
+            <button class="btn" type="button" id="cancel-btn">Cancel</button>
+            <button class="btn" type="submit" id="ok-btn">OK</button>
+          </div>
+        </section>
+      </div>
+    </fieldset>
+  </form>
 
-    <!-- Watch Output Section -->
-    <div id="container">
-    </div>
+  <!-- Watch Output Section -->
+  <main id="container" aria-live="polite"></main>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
-
 </html>
